@@ -1,0 +1,19 @@
+{
+    "name": "com.datadoghq.unity.ios",
+    "rootNamespace": "Datadog.Unity.iOS",
+    "references": [
+        "com.datadog.unity"
+    ],
+    "includePlatforms": [
+        "iOS",
+        "tvOS"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

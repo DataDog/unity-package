@@ -1,0 +1,11 @@
+framework module DatadogCrashReporting {
+  umbrella header "DatadogCrashReporting.h"
+  export *
+
+  module * { export * }
+}
+
+module DatadogCrashReporting.Swift {
+  header "DatadogCrashReporting-Swift.h"
+  requires objc
+}

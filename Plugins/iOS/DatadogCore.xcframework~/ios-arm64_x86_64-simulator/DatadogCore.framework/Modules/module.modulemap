@@ -1,0 +1,11 @@
+framework module DatadogCore {
+  umbrella header "DatadogCore.h"
+  export *
+
+  module * { export * }
+}
+
+module DatadogCore.Swift {
+  header "DatadogCore-Swift.h"
+  requires objc
+}

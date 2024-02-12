@@ -1,0 +1,4 @@
+framework module DatadogLogs {
+  header "DatadogLogs-Swift.h"
+  requires objc
+}

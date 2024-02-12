@@ -1,0 +1,18 @@
+{
+    "name": "com.datadoghq.unity.android",
+    "rootNamespace": "Datadog.Unity.Android",
+    "references": [
+        "com.datadog.unity"
+    ],
+    "includePlatforms": [
+        "Android"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
