@@ -1,0 +1,169 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9 (swiftlang-5.9.0.128.108 clang-1500.0.40.1)
+// swift-module-flags: -target arm64-apple-tvos11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name DatadogLogs
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import DatadogInternal
+import Foundation
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct Logger {
+  public struct Configuration {
+    public enum ConsoleLogFormat {
+      case short
+      case shortWith(prefix: Swift.String)
+    }
+    public var service: Swift.String?
+    public var name: Swift.String?
+    public var networkInfoEnabled: Swift.Bool
+    public var bundleWithRumEnabled: Swift.Bool
+    public var bundleWithTraceEnabled: Swift.Bool
+    public var remoteSampleRate: Swift.Float
+    public var remoteLogThreshold: DatadogLogs.LogLevel
+    public var consoleLogFormat: DatadogLogs.Logger.Configuration.ConsoleLogFormat?
+    public init(service: Swift.String? = nil, name: Swift.String? = nil, networkInfoEnabled: Swift.Bool = false, bundleWithRumEnabled: Swift.Bool = true, bundleWithTraceEnabled: Swift.Bool = true, remoteSampleRate: Swift.Float = 100, remoteLogThreshold: DatadogLogs.LogLevel = .debug, consoleLogFormat: DatadogLogs.Logger.Configuration.ConsoleLogFormat? = nil)
+  }
+  public static func create(with configuration: DatadogLogs.Logger.Configuration = .init(), in core: any DatadogInternal.DatadogCoreProtocol = CoreRegistry.default) -> any DatadogLogs.LoggerProtocol
+}
+public enum Logs {
+  public struct Configuration {
+    public typealias EventMapper = (DatadogLogs.LogEvent) -> DatadogLogs.LogEvent?
+    public var eventMapper: DatadogLogs.Logs.Configuration.EventMapper?
+    public var customEndpoint: Foundation.URL?
+    public init(eventMapper: DatadogLogs.Logs.Configuration.EventMapper? = nil, customEndpoint: Foundation.URL? = nil)
+  }
+  public static func enable(with configuration: DatadogLogs.Logs.Configuration = .init(), in core: any DatadogInternal.DatadogCoreProtocol = CoreRegistry.default)
+}
+extension DatadogLogs.Logs.Configuration : DatadogInternal.InternalExtended {
+  public typealias ExtendedType = DatadogLogs.Logs.Configuration
+}
+extension DatadogInternal.InternalExtension where ExtendedType == DatadogLogs.Logs.Configuration {
+  public mutating func setLogEventMapper(_ mapper: any DatadogLogs.LogEventMapper)
+}
+public protocol LogEventMapper {
+  func map(event: DatadogLogs.LogEvent, callback: @escaping (DatadogLogs.LogEvent) -> Swift.Void)
+}
+public protocol InternalLoggerProtocol {
+  func log(level: DatadogLogs.LogLevel, message: Swift.String, errorKind: Swift.String?, errorMessage: Swift.String?, stackTrace: Swift.String?, attributes: [Swift.String : any Swift.Encodable]?)
+}
+extension DatadogLogs.LoggerProtocol {
+  public var _internal: any DatadogLogs.InternalLoggerProtocol {
+    get
+  }
+}
+public struct LogEvent : Swift.Encodable {
+  public enum Status : Swift.String, Swift.Encodable, Swift.CaseIterable, Swift.Equatable {
+    case debug
+    case info
+    case notice
+    case warn
+    case error
+    case critical
+    case emergency
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [DatadogLogs.LogEvent.Status]
+    public typealias RawValue = Swift.String
+    public static var allCases: [DatadogLogs.LogEvent.Status] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public struct Attributes {
+    public var userAttributes: [Swift.String : any Swift.Encodable]
+  }
+  public struct UserInfo {
+    public let id: Swift.String?
+    public let name: Swift.String?
+    public let email: Swift.String?
+    public var extraInfo: [Swift.String : any Swift.Encodable]
+  }
+  public struct Error {
+    public var kind: Swift.String?
+    public var message: Swift.String?
+    public var stack: Swift.String?
+  }
+  public struct DeviceInfo : Swift.Codable {
+    public let architecture: Swift.String
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct OperatingSystem : Swift.Codable {
+    public let name: Swift.String
+    public let version: Swift.String
+    public let build: Swift.String?
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct Dd : Swift.Codable {
+    public let device: DatadogLogs.LogEvent.DeviceInfo
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public let date: Foundation.Date
+  public let status: DatadogLogs.LogEvent.Status
+  public var message: Swift.String
+  public var error: DatadogLogs.LogEvent.Error?
+  public let serviceName: Swift.String
+  public let environment: Swift.String
+  public let loggerName: Swift.String
+  public let loggerVersion: Swift.String
+  public let threadName: Swift.String?
+  public let applicationVersion: Swift.String
+  public let applicationBuildNumber: Swift.String
+  public let buildId: Swift.String?
+  public let dd: DatadogLogs.LogEvent.Dd
+  public let os: DatadogLogs.LogEvent.OperatingSystem
+  public var userInfo: DatadogLogs.LogEvent.UserInfo
+  public let networkConnectionInfo: DatadogInternal.NetworkConnectionInfo?
+  public let mobileCarrierInfo: DatadogInternal.CarrierInfo?
+  public var attributes: DatadogLogs.LogEvent.Attributes
+  public var tags: [Swift.String]?
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public enum LogLevel : Swift.Int, Swift.Codable {
+  case debug
+  case info
+  case notice
+  case warn
+  case error
+  case critical
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension DatadogInternal.CoreLoggerLevel {
+  public init(logLevel: DatadogLogs.LogLevel)
+}
+public protocol LoggerProtocol {
+  func log(level: DatadogLogs.LogLevel, message: Swift.String, error: (any Swift.Error)?, attributes: [Swift.String : any Swift.Encodable]?)
+  func addAttribute(forKey key: DatadogInternal.AttributeKey, value: any Swift.Encodable)
+  func removeAttribute(forKey key: DatadogInternal.AttributeKey)
+  func addTag(withKey key: Swift.String, value: Swift.String)
+  func removeTag(withKey key: Swift.String)
+  func add(tag: Swift.String)
+  func remove(tag: Swift.String)
+}
+extension DatadogLogs.LoggerProtocol {
+  public func debug(_ message: Swift.String, error: (any Swift.Error)? = nil, attributes: [DatadogInternal.AttributeKey : any Swift.Encodable]? = nil)
+  public func info(_ message: Swift.String, error: (any Swift.Error)? = nil, attributes: [DatadogInternal.AttributeKey : any Swift.Encodable]? = nil)
+  public func notice(_ message: Swift.String, error: (any Swift.Error)? = nil, attributes: [DatadogInternal.AttributeKey : any Swift.Encodable]? = nil)
+  public func warn(_ message: Swift.String, error: (any Swift.Error)? = nil, attributes: [DatadogInternal.AttributeKey : any Swift.Encodable]? = nil)
+  public func error(_ message: Swift.String, error: (any Swift.Error)? = nil, attributes: [DatadogInternal.AttributeKey : any Swift.Encodable]? = nil)
+  public func critical(_ message: Swift.String, error: (any Swift.Error)? = nil, attributes: [DatadogInternal.AttributeKey : any Swift.Encodable]? = nil)
+}
+extension DatadogLogs.Logs : DatadogInternal.InternalExtended {
+  public typealias ExtendedType = DatadogLogs.Logs
+}
+extension DatadogInternal.InternalExtension where ExtendedType == DatadogLogs.Logs {
+  public static func isEnabled(in core: any DatadogInternal.DatadogCoreProtocol = CoreRegistry.default) -> Swift.Bool
+}
+extension DatadogLogs.LogEvent.Status : Swift.Hashable {}
+extension DatadogLogs.LogEvent.Status : Swift.RawRepresentable {}
+extension DatadogLogs.LogLevel : Swift.Equatable {}
+extension DatadogLogs.LogLevel : Swift.Hashable {}
+extension DatadogLogs.LogLevel : Swift.RawRepresentable {}

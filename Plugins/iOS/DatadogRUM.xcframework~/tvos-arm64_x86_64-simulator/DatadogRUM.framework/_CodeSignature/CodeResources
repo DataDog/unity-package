@@ -10,39 +10,47 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		UL6SW0jbGDHu5U52tkILDAvitiA=
-		</data>
-		<key>Modules/DatadogRUM.swiftmodule/Project/arm64-apple-tvos-simulator.swiftsourceinfo</key>
-		<data>
-		rc6TKSxFdarCY1930/sUGWDoJ48=
-		</data>
-		<key>Modules/DatadogRUM.swiftmodule/Project/x86_64-apple-tvos-simulator.swiftsourceinfo</key>
-		<data>
-		MkbVS+bZMcQL1f8lhq4Hn7J5dMQ=
+		NGNOrbgQgFpiA2MV1rXW5y6zYV8=
 		</data>
 		<key>Modules/DatadogRUM.swiftmodule/arm64-apple-tvos-simulator.abi.json</key>
 		<data>
-		FSPnLbho3G+LL9smI3XgVOqBIQ4=
+		sW/tzBX0yx+NYDqgZ0KuP0B1HFE=
+		</data>
+		<key>Modules/DatadogRUM.swiftmodule/arm64-apple-tvos-simulator.private.swiftinterface</key>
+		<data>
+		abck+D58ED6l+ipVgdF190XkLvI=
 		</data>
 		<key>Modules/DatadogRUM.swiftmodule/arm64-apple-tvos-simulator.swiftdoc</key>
 		<data>
-		QfcsK8LsWi1OFznJfLoMZ0CQ5os=
+		atq7jctJd2ixqwY/Mxag1HTU/K0=
+		</data>
+		<key>Modules/DatadogRUM.swiftmodule/arm64-apple-tvos-simulator.swiftinterface</key>
+		<data>
+		abck+D58ED6l+ipVgdF190XkLvI=
 		</data>
 		<key>Modules/DatadogRUM.swiftmodule/arm64-apple-tvos-simulator.swiftmodule</key>
 		<data>
-		Bade0IbhDZak/Q6yBCxlAJVOiek=
+		Xc2Cr9g9IGud4jblQfh6IabMFzg=
 		</data>
 		<key>Modules/DatadogRUM.swiftmodule/x86_64-apple-tvos-simulator.abi.json</key>
 		<data>
-		FSPnLbho3G+LL9smI3XgVOqBIQ4=
+		sW/tzBX0yx+NYDqgZ0KuP0B1HFE=
+		</data>
+		<key>Modules/DatadogRUM.swiftmodule/x86_64-apple-tvos-simulator.private.swiftinterface</key>
+		<data>
+		PWeQ+dfzZ9+SzgC9iv9bmyCxOb4=
 		</data>
 		<key>Modules/DatadogRUM.swiftmodule/x86_64-apple-tvos-simulator.swiftdoc</key>
 		<data>
-		aBuXnY2hz/WVsz1TewRzub/MRL4=
+		h2Yafg0wFXlbQDDcPml+ypA2qck=
+		</data>
+		<key>Modules/DatadogRUM.swiftmodule/x86_64-apple-tvos-simulator.swiftinterface</key>
+		<data>
+		PWeQ+dfzZ9+SzgC9iv9bmyCxOb4=
 		</data>
 		<key>Modules/DatadogRUM.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule</key>
 		<data>
-		yL+mRLnayXIQBJAc2SE51wuMKJY=
+		cY7ddcjPro3x6d8IjCk2TjE2y7A=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -58,60 +66,74 @@
 			79LOx8X340RdkY4nZUtJVe/dS6Pn3GiUjapG1QFFTFk=
 			</data>
 		</dict>
-		<key>Modules/DatadogRUM.swiftmodule/Project/arm64-apple-tvos-simulator.swiftsourceinfo</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			3wuqmx6fqGyPccAkU3rI3AXlrbSS4d3nr4wa7THNfzU=
-			</data>
-		</dict>
-		<key>Modules/DatadogRUM.swiftmodule/Project/x86_64-apple-tvos-simulator.swiftsourceinfo</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			WjxBVnQ+P+SAgxINSRHzipsPq6zrc5KVUyjTW6N1jMc=
-			</data>
-		</dict>
 		<key>Modules/DatadogRUM.swiftmodule/arm64-apple-tvos-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KnRdWE4y6t4QM5zi5JDptPdHFgJy1Tku+7GLkZS2aNM=
+			GvokbCuvBoPS0nRX4NElRxhtKhEGMY09SiRTjOuYKyk=
+			</data>
+		</dict>
+		<key>Modules/DatadogRUM.swiftmodule/arm64-apple-tvos-simulator.private.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Z9n5rssJ44dFlmJ46RgstQpNYOzWIcuzOfHuLKbKLpM=
 			</data>
 		</dict>
 		<key>Modules/DatadogRUM.swiftmodule/arm64-apple-tvos-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			lhf8VmZbDnLuPpgq/h0j45yKzAk1I2gbe94651l4XTQ=
+			yYWoTFMOcFPOy94yaFFXjQdkFw6kOd4f0Z6qDpMs8Is=
+			</data>
+		</dict>
+		<key>Modules/DatadogRUM.swiftmodule/arm64-apple-tvos-simulator.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Z9n5rssJ44dFlmJ46RgstQpNYOzWIcuzOfHuLKbKLpM=
 			</data>
 		</dict>
 		<key>Modules/DatadogRUM.swiftmodule/arm64-apple-tvos-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5w512RqAH0f4+Z5dJ4OGi1n0pIrzpFPMSt6DTKVak54=
+			wjvZsg2NSeoTWRQl21B898aww603H7oX9Oz6iU38/6E=
 			</data>
 		</dict>
 		<key>Modules/DatadogRUM.swiftmodule/x86_64-apple-tvos-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KnRdWE4y6t4QM5zi5JDptPdHFgJy1Tku+7GLkZS2aNM=
+			GvokbCuvBoPS0nRX4NElRxhtKhEGMY09SiRTjOuYKyk=
+			</data>
+		</dict>
+		<key>Modules/DatadogRUM.swiftmodule/x86_64-apple-tvos-simulator.private.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			8uvVUrSINrYcCvDAvQNgTIfItyyc0JILbukM2zmzbsY=
 			</data>
 		</dict>
 		<key>Modules/DatadogRUM.swiftmodule/x86_64-apple-tvos-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			736UThymUU518rbuHKb5IiBAVptyNRkF5aiHsROth6k=
+			cmOOtviIv1mY+u1/UvOs1yXdq1QCHKPaw0IVCpO2bUk=
+			</data>
+		</dict>
+		<key>Modules/DatadogRUM.swiftmodule/x86_64-apple-tvos-simulator.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			8uvVUrSINrYcCvDAvQNgTIfItyyc0JILbukM2zmzbsY=
 			</data>
 		</dict>
 		<key>Modules/DatadogRUM.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7w3KNleukjBAf1XlOwrWcbdtMHBJ8bk8xiWb/+8Cn10=
+			zWXl0ALxBhho/+uwoZKPmgJ3/cHtObBv7oaMLMewl6Y=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

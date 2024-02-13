@@ -14,39 +14,47 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		ber219vtJf4ufXtPyh6OQjRaNYw=
-		</data>
-		<key>Modules/DatadogCrashReporting.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
-		<data>
-		lb77E+weNMfpsRO7VfobEd/FJo4=
-		</data>
-		<key>Modules/DatadogCrashReporting.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
-		<data>
-		l8tVEoSD4rOmpV1Z+E8QUiCoyDI=
+		JwO3fDrXuIrPtLJVX37HDpccHGw=
 		</data>
 		<key>Modules/DatadogCrashReporting.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		FSPnLbho3G+LL9smI3XgVOqBIQ4=
+		PPr0VobCmpy0UK/3MGauU32YI34=
+		</data>
+		<key>Modules/DatadogCrashReporting.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
+		<data>
+		dVoFC2MARWA1RJw0hzuQnkLHwr8=
 		</data>
 		<key>Modules/DatadogCrashReporting.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
 		pdg1O73pAvBfBlkd1/lb+rTQDXA=
 		</data>
+		<key>Modules/DatadogCrashReporting.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
+		<data>
+		dVoFC2MARWA1RJw0hzuQnkLHwr8=
+		</data>
 		<key>Modules/DatadogCrashReporting.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		c2/UlTS/GqthrfkMsvl/Lm0v73A=
+		yiA9z8G5cJeiQn+0X10YRNXIL8k=
 		</data>
 		<key>Modules/DatadogCrashReporting.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		FSPnLbho3G+LL9smI3XgVOqBIQ4=
+		PPr0VobCmpy0UK/3MGauU32YI34=
+		</data>
+		<key>Modules/DatadogCrashReporting.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
+		<data>
+		o6T8xPopiTYzFTp+6AmGH/kaPZk=
 		</data>
 		<key>Modules/DatadogCrashReporting.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
 		OSVBjCf60pMZ/X68V5eMvP5xPlo=
 		</data>
+		<key>Modules/DatadogCrashReporting.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
+		<data>
+		o6T8xPopiTYzFTp+6AmGH/kaPZk=
+		</data>
 		<key>Modules/DatadogCrashReporting.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		+5oPJQnShXAgu9AirJg05aOtEbU=
+		k9rNvb9a273t7PNSV7hVspS8l8o=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -69,25 +77,18 @@
 			WbWKA3cjQm5X763QNgJPcKa5cGYcvNjmhey+ZuPaUfc=
 			</data>
 		</dict>
-		<key>Modules/DatadogCrashReporting.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Teo3pNDHM3UfKZsPiZnvDGz+yIIN8XkFHLIB1hF8mYY=
-			</data>
-		</dict>
-		<key>Modules/DatadogCrashReporting.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			NcaklLho5WSzmlJwdPXc+pwoT08q/Dzw8IRdZCvyQyI=
-			</data>
-		</dict>
 		<key>Modules/DatadogCrashReporting.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KnRdWE4y6t4QM5zi5JDptPdHFgJy1Tku+7GLkZS2aNM=
+			B69+QzWl52zYHUH0Od4QRmRaJ2eDKPmpMYK01ScfR78=
+			</data>
+		</dict>
+		<key>Modules/DatadogCrashReporting.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ZlvEPQHkWQJPknGUWlZE1hO08xRTKrClv64+22GhLUw=
 			</data>
 		</dict>
 		<key>Modules/DatadogCrashReporting.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -97,18 +98,32 @@
 			TudAhTXmlKuYpubYwVL/RYRK7lXt8G//l9B0zgMjBL4=
 			</data>
 		</dict>
+		<key>Modules/DatadogCrashReporting.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ZlvEPQHkWQJPknGUWlZE1hO08xRTKrClv64+22GhLUw=
+			</data>
+		</dict>
 		<key>Modules/DatadogCrashReporting.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			kU3Q/5qWT2FVaCqAPSlbgKaYoWvHxXGEXIuRHsIodMk=
+			8DbH+vDKTaOkG/+5SILFl84i1qez145HboJHG8PHCG8=
 			</data>
 		</dict>
 		<key>Modules/DatadogCrashReporting.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KnRdWE4y6t4QM5zi5JDptPdHFgJy1Tku+7GLkZS2aNM=
+			B69+QzWl52zYHUH0Od4QRmRaJ2eDKPmpMYK01ScfR78=
+			</data>
+		</dict>
+		<key>Modules/DatadogCrashReporting.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			F7Ljpa4i9k+4yufS2MMzLt4skiayFLjB37C8yhFsj2Q=
 			</data>
 		</dict>
 		<key>Modules/DatadogCrashReporting.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -118,11 +133,18 @@
 			GT3ZBvcX12bj4BbUVm2eiYQOcKhNpTpInn4Exp24Xzk=
 			</data>
 		</dict>
+		<key>Modules/DatadogCrashReporting.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			F7Ljpa4i9k+4yufS2MMzLt4skiayFLjB37C8yhFsj2Q=
+			</data>
+		</dict>
 		<key>Modules/DatadogCrashReporting.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			8uIYZT8swrEsUhQuD0/74AGFdJSWzQq1NtR9UF2evsI=
+			HgbW3df+eN+G5eYEe2gmTCmH85Dd6vQIxsykYIAaGw4=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
