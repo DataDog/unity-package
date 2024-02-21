@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.3
+
+* Update Android to 2.6.1
+
 ## 1.0.2
 
 * Update Android to 2.6.0
