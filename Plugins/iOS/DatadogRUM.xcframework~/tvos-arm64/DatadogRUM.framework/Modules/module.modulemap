@@ -1,4 +1,0 @@
-framework module DatadogRUM {
-  header "DatadogRUM-Swift.h"
-  requires objc
-}

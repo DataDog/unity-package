@@ -1,4 +1,0 @@
-framework module DatadogInternal {
-  header "DatadogInternal-Swift.h"
-  requires objc
-}
