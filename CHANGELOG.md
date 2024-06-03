@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.1.1
+
+* Allow configuration of Datadog SDK verbosity.
+* Isolate Datadog SDKs to Unity framework to prevent certain build errors.
+
 ## 1.1.0
 
 * Remove precompiled frameworks in favor of Cocoapod resolution with EDM4U

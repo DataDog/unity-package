@@ -4,17 +4,17 @@
       <repository>https://repo.maven.apache.org/maven2</repository>
       <repository>https://oss.sonatype.org/content/repositories/snapshots</repository>
     </repositories>
-    <androidPackage spec="com.datadoghq:dd-sdk-android-rum:2.9.0">
+    <androidPackage spec="com.datadoghq:dd-sdk-android-rum:2.10.1">
     </androidPackage>
-    <androidPackage spec="com.datadoghq:dd-sdk-android-logs:2.9.0">
+    <androidPackage spec="com.datadoghq:dd-sdk-android-logs:2.10.1">
     </androidPackage>
-    <androidPackage spec="com.datadoghq:dd-sdk-android-ndk:2.9.0">
+    <androidPackage spec="com.datadoghq:dd-sdk-android-ndk:2.10.1">
     </androidPackage>
   </androidPackages>
   <iosPods>
-    <iosPod name="DatadogCore" bitcodeEnabled="false" minTargetSdk="12.0" version="2.9.0" addToAllTargets="true" />
-    <iosPod name="DatadogLogs" bitcodeEnabled="false" minTargetSdk="12.0" version="2.9.0" addToAllTargets="true" />
-    <iosPod name="DatadogRUM" bitcodeEnabled="false" minTargetSdk="12.0" version="2.9.0" addToAllTargets="true" />
-    <iosPod name="DatadogCrashReporting" bitcodeEnabled="false" minTargetSdk="12.0" version="2.9.0" addToAllTargets="true" />
+    <iosPod name="DatadogCore" bitcodeEnabled="false" minTargetSdk="12.0" version="2.9.0" />
+    <iosPod name="DatadogLogs" bitcodeEnabled="false" minTargetSdk="12.0" version="2.9.0" />
+    <iosPod name="DatadogRUM" bitcodeEnabled="false" minTargetSdk="12.0" version="2.9.0" />
+    <iosPod name="DatadogCrashReporting" bitcodeEnabled="false" minTargetSdk="12.0" version="2.9.0" />
   </iosPods>
 </dependencies>

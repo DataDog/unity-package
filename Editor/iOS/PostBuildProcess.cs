@@ -43,6 +43,7 @@ namespace Datadog.Unity.Editor.iOS
                 pbxProject.ReadFromFile(projectPath);
 
                 var mainTarget = pbxProject.GetUnityMainTargetGuid();
+                var frameworkTarget = pbxProject.GetUnityFrameworkTargetGuid();
 
                 var initializationFile = Path.Combine("MainApp", "DatadogInitialization.swift");
                 var initializationPath = Path.Combine(pathToProject, initializationFile);
@@ -54,9 +55,9 @@ namespace Datadog.Unity.Editor.iOS
                 {
                     pbxProject.AddBuildProperty(mainTarget, "SWIFT_VERSION", "5");
                 }
-                pbxProject.AddFileToBuild(mainTarget, initializationFileGuid);
+                pbxProject.AddFileToBuild(frameworkTarget, initializationFileGuid);
 
-                AddInitializationToMain(Path.Combine(pathToProject, "MainApp", "main.mm"), datadogOptions);
+                AddInitializationToAppController(Path.Combine(pathToProject, "Classes", "UnityAppController.mm"), datadogOptions);
 
                 if (datadogOptions.OutputSymbols)
                 {
@@ -64,7 +65,6 @@ namespace Datadog.Unity.Editor.iOS
                 }
 
                 // disable embed swift libs - prevents "UnityFramework.framework contains disallowed file 'Frameworks'."
-                var frameworkTarget = pbxProject.GetUnityFrameworkTargetGuid();
                 pbxProject.SetBuildProperty(frameworkTarget, "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES", "NO");
 
                 var projectInString = pbxProject.WriteToString();
@@ -89,6 +89,7 @@ namespace Datadog.Unity.Editor.iOS
             }
 
             var sdkVersion = DatadogSdk.SdkVersion;
+            var sdkLogLevel = GetSwiftCoreLoggerLevel(options.SdkVerbosity);
 
             var sb = new StringBuilder($@"// Datadog Options File -
 // THIS FILE IS AUTO GENERATED --- changes to this file will be lost!
@@ -100,7 +101,7 @@ import DatadogCrashReporting
 
 @_cdecl(""initializeDatadog"")
 func initializeDatadog() {{
-    Datadog.verbosityLevel = .debug
+    Datadog.verbosityLevel = {sdkLogLevel}
     var config = Datadog.Configuration(
         clientToken: ""{options.ClientToken}"",
         env: ""{env}"",
@@ -208,11 +209,11 @@ find . -type d -name '*.dSYM' -exec cp -r '{{}}' ""$PROJECT_DIR/{SymbolAssemblyB
             pbxProject.AddShellScriptBuildPhase(mainTarget, CopyPhaseName, "/bin/bash", copyDsymScript.ToString());
         }
 
-        internal static void AddInitializationToMain(string pathToMain, DatadogConfigurationOptions options)
+        internal static void AddInitializationToAppController(string pathToMain, DatadogConfigurationOptions options)
         {
             if (!File.Exists(pathToMain))
             {
-                throw new FileNotFoundException("Could not find Unity main.", pathToMain);
+                throw new FileNotFoundException("Could not find UnityAppController.", pathToMain);
             }
 
             var mainText = new List<string>(File.ReadAllLines(pathToMain));
@@ -261,12 +262,8 @@ find . -type d -name '*.dSYM' -exec cp -r '{{}}' ""$PROJECT_DIR/{SymbolAssemblyB
                     DatadogBlockEnd,
             });
 
-            int autoReleaseLine = lines.FindIndex(0, x => x.Trim().Contains("@autoreleasepool"));
-            int insertLine = autoReleaseLine + 1;
-            if (lines[insertLine].Trim() == "{")
-            {
-                insertLine += 1;
-            }
+            int applicationLaunchLog = lines.FindIndex(0, x => x.Trim().Contains("::printf(\"-> applicationDidFinishLaunching()\\n\");"));
+            int insertLine = applicationLaunchLog + 1;
 
             var newLines = new List<string>()
             {
@@ -276,6 +273,18 @@ find . -type d -name '*.dSYM' -exec cp -r '{{}}' ""$PROJECT_DIR/{SymbolAssemblyB
             };
 
             lines.InsertRange(insertLine, newLines);
+        }
+
+        private static string GetSwiftCoreLoggerLevel(CoreLoggerLevel level)
+        {
+            return level switch
+            {
+                CoreLoggerLevel.Debug => ".debug",
+                CoreLoggerLevel.Warn => ".warn",
+                CoreLoggerLevel.Error => ".error",
+                CoreLoggerLevel.Critical => ".critical",
+                _ => ".warn",
+            };
         }
 
         private static string GetSwiftBatchSize(BatchSize batchSize)
