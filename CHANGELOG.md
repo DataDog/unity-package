@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.1.2
+
+* Fix Datadog Site support in iOS.
+
 ## 1.1.1
 
 * Allow configuration of Datadog SDK verbosity.
