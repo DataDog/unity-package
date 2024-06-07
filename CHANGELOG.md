@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.1.3
+
+* Fix `setVerbosity` on Android.
+
 ## 1.1.2
 
 * Fix Datadog Site support in iOS.
