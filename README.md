@@ -105,7 +105,7 @@ logger.Debug("Hello with attributes", new()
 
 ### Manual Scene (View) Tracking
 
-To manually track new Scenes (`Views` id Datadog), use the `StartVeiw` and `StopView` methods:
+To manually track new Scenes (`Views` in Datadog), use the `StartView` and `StopView` methods:
 
 ```cs
 public void Start()
