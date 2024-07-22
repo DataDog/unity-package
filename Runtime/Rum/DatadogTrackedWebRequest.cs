@@ -11,13 +11,18 @@ namespace Datadog.Unity.Rum
     /// <summary>
     /// DatadogTrackedWebRequest is a wrapper around <see cref="UnityWebRequest"/> that allows us to track the request.
     /// </summary>
-    public class DatadogTrackedWebRequest
+    public class DatadogTrackedWebRequest : IDisposable
     {
         private readonly UnityWebRequest _innerRequest;
 
         public DatadogTrackedWebRequest()
         {
             _innerRequest = new UnityWebRequest();
+        }
+
+        ~DatadogTrackedWebRequest()
+        {
+            _innerRequest?.Dispose();
         }
 
         /// <summary>
@@ -173,7 +178,7 @@ namespace Datadog.Unity.Rum
                     var context = trackingHelper.GenerateTraceContext();
                     trackingHelper.GenerateDatadogAttributes(context, attributes);
                     var headers = new Dictionary<string, string>();
-                    trackingHelper.GenerateTracingHeaders(context, tracingHeaders, headers);
+                    trackingHelper.GenerateTracingHeaders(context, tracingHeaders, trackingHelper.TraceContextInjection, headers);
 
                     foreach (var header in headers)
                     {
@@ -251,6 +256,7 @@ namespace Datadog.Unity.Rum
         public void Dispose()
         {
             _innerRequest?.Dispose();
+            GC.SuppressFinalize(this);
         }
 
         public static DatadogTrackedWebRequest Delete(string url)

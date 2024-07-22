@@ -52,12 +52,14 @@ namespace Datadog.Unity.Android
                 environment = "prod";
             }
 
+            var serviceName = options.ServiceName == string.Empty ? null : options.ServiceName;
+
             using var configBuilder = new AndroidJavaObject(
                 "com.datadog.android.core.configuration.Configuration$Builder",
                 options.ClientToken,
                 environment,
                 string.Empty, // Variant Name
-                null // Service Name
+                serviceName // Service Name
             );
             configBuilder.Call<AndroidJavaObject>("useSite", DatadogConfigurationHelpers.GetSite(options.Site));
             configBuilder.Call<AndroidJavaObject>("setBatchSize", DatadogConfigurationHelpers.GetBatchSize(options.BatchSize));
@@ -92,7 +94,7 @@ namespace Datadog.Unity.Android
             using var logsConfigBuilder = new AndroidJavaObject("com.datadog.android.log.LogsConfiguration$Builder");
             if (options.CustomEndpoint != string.Empty)
             {
-                logsConfigBuilder.Call<AndroidJavaObject>("useCustomEndpoint", options.CustomEndpoint + "/logs");
+                logsConfigBuilder.Call<AndroidJavaObject>("useCustomEndpoint", options.CustomEndpoint);
             }
 
             using var logsConfig = logsConfigBuilder.Call<AndroidJavaObject>("build");
@@ -105,7 +107,7 @@ namespace Datadog.Unity.Android
                 rumConfigBuilder.Call<AndroidJavaObject>("disableUserInteractionTracking");
                 if (options.CustomEndpoint != string.Empty)
                 {
-                    rumConfigBuilder.Call<AndroidJavaObject>("useCustomEndpoint", options.CustomEndpoint + "/rum");
+                    rumConfigBuilder.Call<AndroidJavaObject>("useCustomEndpoint", options.CustomEndpoint);
                 }
 
                 rumConfigBuilder.Call<AndroidJavaObject>("useViewTrackingStrategy", new object[] { null });
@@ -190,6 +192,22 @@ namespace Datadog.Unity.Android
 
             var innerLogger = new DatadogAndroidLogger(options.RemoteLogThreshold, options.RemoteSampleRate, androidLogger);
             return new DdWorkerProxyLogger(worker, innerLogger);
+        }
+
+        public void AddLogsAttributes(Dictionary<string, object> attributes)
+        {
+            using var logsClass = new AndroidJavaClass("com.datadog.android.log.Logs");
+            foreach (var attr in attributes)
+            {
+                AndroidJavaObject javaValue = DatadogAndroidHelpers.ObjectToJavaObject(attr.Value);
+                logsClass.CallStatic("addAttribute", attr.Key, javaValue);
+            }
+        }
+
+        public void RemoveLogsAttribute(string key)
+        {
+            using var logsClass = new AndroidJavaClass("com.datadog.android.log.Logs");
+            logsClass.CallStatic("removeAttribute", key);
         }
 
         public IDdRum InitRum(DatadogConfigurationOptions options)

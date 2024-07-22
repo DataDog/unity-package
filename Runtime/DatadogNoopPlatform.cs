@@ -6,11 +6,20 @@ using System.Collections.Generic;
 using Datadog.Unity.Logs;
 using Datadog.Unity.Rum;
 using Datadog.Unity.Worker;
+using UnityEngine;
 
 namespace Datadog.Unity
 {
     internal class DatadogNoOpPlatform : IDatadogPlatform
     {
+        public DatadogNoOpPlatform()
+        {
+            if (Application.isEditor)
+            {
+                Debug.LogWarning("Datadog SDK is running in Editor mode. No data will be sent to Datadog.");
+            }
+        }
+
         public void SetVerbosity(CoreLoggerLevel logLevel)
         {
         }
@@ -18,6 +27,14 @@ namespace Datadog.Unity
         public DdLogger CreateLogger(DatadogLoggingOptions options, DatadogWorker worker)
         {
             return new DdNoOpLogger();
+        }
+
+        public void AddLogsAttributes(Dictionary<string, object> attributes)
+        {
+        }
+
+        public void RemoveLogsAttribute(string key)
+        {
         }
 
         public void SetUserInfo(string id, string name, string email, Dictionary<string, object> extraInfo)
@@ -39,7 +56,6 @@ namespace Datadog.Unity
 
         public void SendErrorTelemetry(string message, string stack, string kind)
         {
-
         }
 
         public void Init(DatadogConfigurationOptions options)

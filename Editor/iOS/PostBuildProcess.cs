@@ -61,7 +61,7 @@ namespace Datadog.Unity.Editor.iOS
 
                 if (datadogOptions.OutputSymbols)
                 {
-                    AddSymbolGenAndCopyToProject(pbxProject, SymbolAssemblyBuildProcess.DatadogSymbolsDir);
+                    AddSymbolGenAndCopyToProject(pbxProject, SymbolAssemblyBuildProcess.IosDatadogSymbolsDir);
                 }
 
                 // disable embed swift libs - prevents "UnityFramework.framework contains disallowed file 'Frameworks'."
@@ -88,6 +88,8 @@ namespace Datadog.Unity.Editor.iOS
                 env = "prod";
             }
 
+            var serviceName = options.ServiceName;
+
             var sdkVersion = DatadogSdk.SdkVersion;
             var sdkLogLevel = GetSwiftCoreLoggerLevel(options.SdkVerbosity);
 
@@ -106,7 +108,14 @@ func initializeDatadog() {{
         clientToken: ""{options.ClientToken}"",
         env: ""{env}"",
         site: {GetSwiftSite(options.Site)},
-        batchSize: {GetSwiftBatchSize(options.BatchSize)},
+");
+
+            if (!(serviceName is null or ""))
+            {
+                sb.AppendLine($"        service: \"{serviceName}\",");
+            }
+
+            sb.Append($@"        batchSize: {GetSwiftBatchSize(options.BatchSize)},
         uploadFrequency: {GetSwiftUploadFrequency(options.UploadFrequency)},
         batchProcessingLevel: {GetSwiftBatchProcessingLevel(options.BatchProcessingLevel)}
     )
@@ -143,7 +152,7 @@ func initializeDatadog() {{
 ");
             if (options.CustomEndpoint != string.Empty)
             {
-                sb.AppendLine($@"    logsConfig.customEndpoint = URL(string: ""{options.CustomEndpoint}/logs"")");
+                sb.AppendLine($@"    logsConfig.customEndpoint = URL(string: ""{options.CustomEndpoint}/api/v2/logs"")");
             }
 
             sb.AppendLine("    Logs.enable(with: logsConfig)");
@@ -157,7 +166,7 @@ func initializeDatadog() {{
 ");
                 if (options.CustomEndpoint != string.Empty)
                 {
-                    sb.AppendLine($@"    rumConfig.customEndpoint = URL(string: ""{options.CustomEndpoint}/rum"")");
+                    sb.AppendLine($@"    rumConfig.customEndpoint = URL(string: ""{options.CustomEndpoint}/api/v2/rum"")");
                 }
 
                 if (options.VitalsUpdateFrequency != VitalsUpdateFrequency.None)
@@ -204,7 +213,7 @@ func initializeDatadog() {{
 
             var copyDsymScript = new StringBuilder(@$"
 cd ""$BUILT_PRODUCTS_DIR""
-find . -type d -name '*.dSYM' -exec cp -r '{{}}' ""$PROJECT_DIR/{SymbolAssemblyBuildProcess.DatadogSymbolsDir}/"" ';'
+find . -type d -name '*.dSYM' -exec cp -r '{{}}' ""$PROJECT_DIR/{SymbolAssemblyBuildProcess.IosDatadogSymbolsDir}/"" ';'
 ");
 
             pbxProject.AddShellScriptBuildPhase(mainTarget, CopyPhaseName, "/bin/bash", copyDsymScript.ToString());
