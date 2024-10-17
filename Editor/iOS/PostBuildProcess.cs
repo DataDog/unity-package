@@ -4,6 +4,7 @@
 #if UNITY_EDITOR_OSX
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -123,6 +124,7 @@ func initializeDatadog() {{
             var additionalConfigurationItems = new List<string>()
             {
                 $"           \"{DatadogSdk.ConfigKeys.Source}\": \"unity\"",
+                $"           \"{DatadogSdk.ConfigKeys.NativeSourceType}\": \"ios+il2cpp\"",
             };
 
             if (buildId != null)
@@ -176,11 +178,15 @@ func initializeDatadog() {{
 
                 sb.AppendLine($"    rumConfig.sessionSampleRate = {options.SessionSampleRate}");
                 sb.AppendLine($"    rumConfig.telemetrySampleRate = {options.TelemetrySampleRate}");
+                var appHangThreshold =
+                    options.TrackNonFatalAppHangs ? options.NonFatalAppHangThreshold.ToString(CultureInfo.InvariantCulture) : "nil";
+                sb.AppendLine(
+                    $"    rumConfig.appHangThreshold = {appHangThreshold}");
 
                 // Uncomment to enable RUM Configuration Telemetry
-    //             sb.AppendLine(@"    rumConfig._internal_mutation {
-    //     $0.configurationTelemetrySampleRate = 100.0
-    // }");
+                // sb.AppendLine(@"    rumConfig._internal_mutation {
+                //     $0.configurationTelemetrySampleRate = 100.0
+                // }");
                 sb.AppendLine("    RUM.enable(with: rumConfig)");
             }
 
