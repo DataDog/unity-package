@@ -245,7 +245,7 @@ namespace Datadog.Unity
                 _platform = platform;
 
                 // Create our worker thread
-                _worker = new ();
+                _worker = _platform.CreateWorker();
                 _worker.AddProcessor(DdSdkProcessor.SdkTargetName, new DdSdkProcessor(_platform));
 
                 _worker.AddProcessor(DdLogsProcessor.LogsTargetName, new DdLogsProcessor());
@@ -257,15 +257,16 @@ namespace Datadog.Unity
                     RemoteLogThreshold = DdLogHelpers.LogTypeToDdLogLevel(options.RemoteLogThreshold),
                 };
                 DefaultLogger = CreateLogger(loggingOptions);
-                if (options.ForwardUnityLogs)
-                {
-                    _logHandler = new (DefaultLogger);
-                    _logHandler.Attach();
-                }
 
                 if (options.RumEnabled)
                 {
                     EnableRum(options);
+                }
+
+                if (options.ForwardUnityLogs)
+                {
+                    _logHandler = new (DefaultLogger, options.RumEnabled ? Rum : null);
+                    _logHandler.Attach();
                 }
 
                 _worker.Start();

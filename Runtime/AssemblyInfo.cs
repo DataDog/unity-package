@@ -5,10 +5,11 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-[assembly: AssemblyVersion("1.3.0")]
+[assembly: AssemblyVersion("1.4.0")]
 [assembly: InternalsVisibleTo("com.datadoghq.unity.tests")]
 [assembly: InternalsVisibleTo("com.datadoghq.unity.android")]
 [assembly: InternalsVisibleTo("com.datadoghq.unity.ios")]
+[assembly: InternalsVisibleTo("com.datadoghq.unity.webgl")]
 [assembly: InternalsVisibleTo("com.datadoghq.unity.Editor")]
 
 // This is the Moq library
