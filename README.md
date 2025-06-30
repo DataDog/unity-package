@@ -7,7 +7,6 @@ The Datadog Unity SDK supports Real User Monitoring (RUM), logging, and crash re
 > [!NOTE]
 > This repo is used to deploy the Datadog Unity package only. To submit issues or patches, use the [Development Repo](https://github.com/DataDog/dd-sdk-unity) instead.
 
-
 ## Install via OpenUPM
 
 The Datadog Unity SDK is available on the [OpenUPM registry](https://openupm.com/packages/com.datadoghq.unity/). You can install it using the `openupm` command line tool.
