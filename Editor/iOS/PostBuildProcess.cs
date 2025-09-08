@@ -1,7 +1,7 @@
 // Unless explicitly stated otherwise all files in this repository are licensed under the Apache License Version 2.0.
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2023-Present Datadog, Inc.
-#if UNITY_EDITOR_OSX
+#if UNITY_IOS
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -22,7 +22,6 @@ namespace Datadog.Unity.Editor.iOS
     {
         private const string DatadogBlockStart = "// > Datadog Generated Block";
         private const string DatadogBlockEnd = "// < End Datadog Generated Block";
-        private static readonly string FrameworkLocation = "Packages/com.datadoghq.unity/Plugins/iOS";
 
         public int callbackOrder => 1;
 
@@ -194,9 +193,11 @@ func initializeDatadog() {{
             {
                 sb.AppendLine();
                 sb.AppendLine("    CrashReporting.enable()");
-                sb.AppendLine("}");
-                sb.AppendLine();
             }
+
+            // Close `func initializeDatadog() {`
+            sb.AppendLine("}");
+            sb.AppendLine();
 
             File.WriteAllText(path, sb.ToString());
         }

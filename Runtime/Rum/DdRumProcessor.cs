@@ -11,13 +11,13 @@ namespace Datadog.Unity.Rum
 {
     internal class DdRumProcessor : IDatadogWorkerProcessor
     {
-        private const string DdRumTimestampAttribute = "_dd.timestamp";
+        internal const string DdRumTimestampAttribute = "_dd.timestamp";
 
         public const string RumTargetName = "rum";
 
-        private readonly IDdRum _rum;
+        private readonly IDdRumInternal _rum;
 
-        public DdRumProcessor(IDdRum rum)
+        public DdRumProcessor(IDdRumInternal rum)
         {
             _rum = rum;
         }
@@ -73,6 +73,9 @@ namespace Datadog.Unity.Rum
                     break;
                 case StopSessionMessage msg:
                     _rum.StopSession();
+                    break;
+                case UpdateExternalRefreshRateMessage msg:
+                    _rum.UpdateExternalRefreshRate(msg.FrameTimeSeconds);
                     break;
             }
         }
@@ -566,6 +569,36 @@ namespace Datadog.Unity.Rum
             public override void Discard()
             {
                 // This should be a fairly rare message, so we don't need to pool it.
+            }
+        }
+
+        internal class UpdateExternalRefreshRateMessage : DdRumWorkerMessage
+        {
+            private static readonly ThreadSafeObjectPool<UpdateExternalRefreshRateMessage> _pool = new (
+                createFunc: () => new UpdateExternalRefreshRateMessage(), actionOnRelease: (obj) => obj.Reset());
+
+            private UpdateExternalRefreshRateMessage()
+            {
+            }
+
+            public double FrameTimeSeconds { get; private set; }
+
+            public static UpdateExternalRefreshRateMessage Create(double frameTimeSeconds)
+            {
+                var obj = _pool.Get();
+                obj.FrameTimeSeconds = frameTimeSeconds;
+
+                return obj;
+            }
+
+            public override void Discard()
+            {
+                _pool.Release(this);
+            }
+
+            private void Reset()
+            {
+                FrameTimeSeconds = 0.0;
             }
         }
 

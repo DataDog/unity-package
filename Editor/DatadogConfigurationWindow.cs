@@ -91,6 +91,9 @@ namespace Datadog.Unity.Editor
             _options.TraceSampleRate = EditorGUILayout.FloatField(
                 new GUIContent("Trace Sample Rate", DatadogHelpStrings.TraceSampleRateTooltip),
                 _options.TraceSampleRate);
+            _options.VitalsUpdateFrequency = (VitalsUpdateFrequency)EditorGUILayout.EnumPopup(
+                new GUIContent("Vitals Update Frequency", DatadogHelpStrings.VitalsUpdateFrequencyTooltip),
+                _options.VitalsUpdateFrequency);
             _options.TraceContextInjection = (TraceContextInjection)EditorGUILayout.EnumPopup(
                 new GUIContent("Trace Context Injection", DatadogHelpStrings.TraceContextInjectionTooltip),
                 _options.TraceContextInjection);
@@ -138,6 +141,7 @@ namespace Datadog.Unity.Editor
             {
                 _options.FirstPartyHosts.Add(new FirstPartyHostOption());
             }
+
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.Space();
@@ -152,6 +156,7 @@ namespace Datadog.Unity.Editor
                     new GUIContent("Telemetry Sample Rate", DatadogHelpStrings.TelemetrySampleRateTooltip), _options.TelemetrySampleRate);
                 _options.TelemetrySampleRate = Math.Clamp(_options.TelemetrySampleRate, 0.0f, 100.0f);
             }
+
             EditorGUILayout.EndFoldoutHeaderGroup();
 
             EditorGUI.EndDisabledGroup();
