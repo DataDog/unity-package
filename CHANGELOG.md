@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.6.0
+
+* Add application version to WebGL builds.
+* Change SDK `source` to `unity` in WebGL builds.
+* Upgrade Datadog iOS SDK to version 2.30.1
+  * Add `ddtags` to RUM events.
+* Upgrade Datadog Android SDK to version 2.26.1
+  * RUM: Move session properties to `ddtags` over query parameters.
+
 ## 1.5.1
 
 * Fix an issue that prevented SDK functionality from working properly in WebGL builds.
