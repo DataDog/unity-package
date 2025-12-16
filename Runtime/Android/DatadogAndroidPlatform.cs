@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Datadog.Unity.Core;
 using Datadog.Unity.Logs;
 using Datadog.Unity.Rum;
 using Datadog.Unity.Worker;
@@ -44,9 +45,9 @@ namespace Datadog.Unity.Android
             _datadogClass = new AndroidJavaClass("com.datadog.android.Datadog");
         }
 
-        public DatadogWorker CreateWorker()
+        public DatadogWorker CreateWorker(IInternalLogger logger)
         {
-            return new ThreadedWorker();
+            return new ThreadedWorker(logger);
         }
 
         public void Init(DatadogConfigurationOptions options)
@@ -198,7 +199,7 @@ namespace Datadog.Unity.Android
             }
 
             var javaExtraInfo = DatadogAndroidHelpers.DictionaryToJavaMap(extraInfo);
-            _datadogClass.CallStatic("addUserExtraInfo", javaExtraInfo);
+            _datadogClass.CallStatic("addUserProperties", javaExtraInfo);
         }
 
         public DdLogger CreateLogger(DatadogLoggingOptions options, DatadogWorker worker)
