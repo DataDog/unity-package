@@ -5,12 +5,13 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-[assembly: AssemblyVersion("1.6.4")]
+[assembly: AssemblyVersion("1.7.0")]
 [assembly: InternalsVisibleTo("com.datadoghq.unity.tests")]
 [assembly: InternalsVisibleTo("com.datadoghq.unity.android")]
 [assembly: InternalsVisibleTo("com.datadoghq.unity.ios")]
 [assembly: InternalsVisibleTo("com.datadoghq.unity.webgl")]
 [assembly: InternalsVisibleTo("com.datadoghq.unity.Editor")]
+[assembly: InternalsVisibleTo("com.datadoghq.unity.flags")]
 
 // This is the Moq library
 [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
