@@ -54,7 +54,7 @@ let ddLogsLib = {
 
             let fingerprint = jsAttributes['_dd.error.fingerprint'];
             if (fingerprint) {
-                jsAttributes.remove('_dd.error.fingerprint');
+                delete jsAttributes['_dd.error.fingerprint'];
                 jsAttributes['error.fingerprint'] = fingerprint;
             }
         }
